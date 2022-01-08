@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test
 
 internal class BankAcceptanceTest {
 
-  @Disabled
   @Test
   internal fun should_find_acquired_customers() {
     val bank = Bank()

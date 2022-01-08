@@ -1,5 +1,6 @@
 package org.example.cqrses.port
 
+import com.google.common.eventbus.EventBus
 import org.example.cqrses.domain.Customer
 
 class DefaultCustomerRepository(
@@ -10,7 +11,9 @@ class DefaultCustomerRepository(
   override fun put(customer: Customer) {
     customer.changes().forEach { event ->
       eventStore.append(event)
-      eventBus.put(event)
+        .also {
+          eventBus.post(event)
+        }
     }
   }
 

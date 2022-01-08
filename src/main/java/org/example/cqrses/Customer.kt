@@ -10,4 +10,6 @@ class Customer {
     changes.add(event)
   }
 
+  fun changes() = changes.toList()
+
 }

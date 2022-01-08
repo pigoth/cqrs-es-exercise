@@ -1,7 +1,7 @@
 package org.example.cqrses
 
 class DefaultCommandHandler(
-  private val customerRepository: CustomerRepository = DefaultCustomerRepository()
+  private val customerRepository: CustomerRepository
 ) : CommandHandler {
 
   override fun handle(command: AcquireCustomer) {

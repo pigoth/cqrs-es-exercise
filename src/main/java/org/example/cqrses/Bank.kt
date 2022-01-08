@@ -3,7 +3,10 @@ package org.example.cqrses
 import java.util.*
 
 class Bank(
-  private val commandHandler: CommandHandler = DefaultCommandHandler(),
+  private val eventBus: EventBus = FakeEventBus(),
+  private val eventStore: EventStore = InMemoryEventStore(),
+  private val customerRepository: CustomerRepository = DefaultCustomerRepository(eventStore, eventBus),
+  private val commandHandler: CommandHandler = DefaultCommandHandler(customerRepository),
   private val idGenerator: IdGenerator = DefaultIdGenerator()
 ) {
 

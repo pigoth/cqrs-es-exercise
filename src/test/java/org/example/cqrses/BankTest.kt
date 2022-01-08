@@ -3,6 +3,12 @@ package org.example.cqrses
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
+import org.example.cqrses.domain.AcquireCustomer
+import org.example.cqrses.logic.CommandHandler
+import org.example.cqrses.logic.IdGenerator
+import org.example.cqrses.port.CustomerRepository
+import org.example.cqrses.port.EventBus
+import org.example.cqrses.port.EventStore
 import org.junit.jupiter.api.Test
 import java.util.*
 

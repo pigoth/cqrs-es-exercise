@@ -1,4 +1,4 @@
-package org.example.cqrses
+package org.example.cqrses.domain
 
 import java.util.*
 

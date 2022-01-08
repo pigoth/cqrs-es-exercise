@@ -1,4 +1,8 @@
-package org.example.cqrses
+package org.example.cqrses.logic
+
+import org.example.cqrses.domain.AcquireCustomer
+import org.example.cqrses.domain.Customer
+import org.example.cqrses.port.CustomerRepository
 
 class DefaultCommandHandler(
   private val customerRepository: CustomerRepository

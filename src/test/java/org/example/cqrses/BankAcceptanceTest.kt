@@ -1,6 +1,7 @@
 package org.example.cqrses
 
 import org.assertj.core.api.Assertions.assertThat
+import org.example.cqrses.port.CustomerView
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 

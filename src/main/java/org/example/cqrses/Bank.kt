@@ -1,5 +1,11 @@
 package org.example.cqrses
 
+import org.example.cqrses.domain.AcquireCustomer
+import org.example.cqrses.logic.CommandHandler
+import org.example.cqrses.logic.DefaultCommandHandler
+import org.example.cqrses.logic.DefaultIdGenerator
+import org.example.cqrses.logic.IdGenerator
+import org.example.cqrses.port.*
 import java.util.*
 
 class Bank(

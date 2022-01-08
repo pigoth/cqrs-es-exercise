@@ -1,4 +1,6 @@
-package org.example.cqrses
+package org.example.cqrses.port
+
+import org.example.cqrses.domain.Customer
 
 class DefaultCustomerRepository(
   private val eventStore: EventStore,

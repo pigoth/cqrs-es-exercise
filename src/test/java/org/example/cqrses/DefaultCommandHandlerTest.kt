@@ -3,8 +3,10 @@ package org.example.cqrses
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
+import org.example.cqrses.domain.AcquireCustomer
+import org.example.cqrses.logic.DefaultCommandHandler
+import org.example.cqrses.port.CustomerRepository
 import org.junit.jupiter.api.Test
-import java.util.*
 import java.util.UUID.randomUUID
 
 internal class DefaultCommandHandlerTest {

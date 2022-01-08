@@ -2,10 +2,17 @@ package org.example.cqrses
 
 import java.util.*
 
-class Bank {
+class Bank(
+  private val commandHandler: CommandHandler = DefaultCommandHandler(),
+  private val idGenerator: IdGenerator = DefaultIdGenerator()
+) {
 
-  fun acquireCustomer(name: String, surname: String) : UUID {
-    TODO("Not yet implemented")
+  fun acquireCustomer(name: String, surname: String, fiscalCode: String, address: String) : UUID {
+    val id = idGenerator.invoke()
+
+    commandHandler.handle(AcquireCustomer(id, name, surname, fiscalCode, address))
+
+    return id
   }
 
   fun  customers(): List<CustomerView> {

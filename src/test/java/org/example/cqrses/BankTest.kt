@@ -1,21 +1,25 @@
 package org.example.cqrses
 
-import org.assertj.core.api.Assertions.assertThat
-import org.junit.Ignore
-import org.junit.jupiter.api.Disabled
+import io.mockk.every
+import io.mockk.mockk
+import io.mockk.verify
 import org.junit.jupiter.api.Test
+import java.util.*
 
 internal class BankTest {
 
-  @Disabled
+  private val idGenerator = mockk<IdGenerator>()
+  private val commandHandler: CommandHandler = mockk()
+
   @Test
-  internal fun should_find_acquired_customers() {
-    val bank = Bank()
+  internal fun `should acquire a new customer`() {
+    val id = UUID.randomUUID()
+    every { idGenerator.invoke() } returns id
+    every { commandHandler.handle(any()) } returns Unit
 
-    val customerId = bank.acquireCustomer("Gino", "Rossi")
+    val bank = Bank(commandHandler, idGenerator)
+    bank.acquireCustomer("aName", "aSurname", "fiscalCode", "aFullAddress")
 
-    assertThat(bank.customers()).containsExactly(
-      CustomerView(customerId, "Gino", "Rossi")
-    )
+    verify { commandHandler.handle(AcquireCustomer(id, "aName", "aSurname", "fiscalCode", "aFullAddress")) }
   }
 }

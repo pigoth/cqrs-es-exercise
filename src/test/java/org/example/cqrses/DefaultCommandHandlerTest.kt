@@ -1,5 +1,6 @@
 package org.example.cqrses
 
+import io.mockk.MockKVerificationScope
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
@@ -25,9 +26,11 @@ internal class DefaultCommandHandlerTest {
 
   @Test
   internal fun should_acquire_a_customer() {
+    val id = randomUUID()
+
     commandHandler.handle(
       AcquireCustomer(
-        id = randomUUID(),
+        id = id,
         name = "Gino",
         surname = "Paoli",
         fiscalCode = "GinoFiscalCode",
@@ -35,21 +38,30 @@ internal class DefaultCommandHandlerTest {
       )
     )
 
-    verify { customerRepository.put(any()) }
+    verify {
+      customerRepository.put(
+        lastChangeMatchWith(CustomerAcquired(id, "Gino", "Paoli", "GinoFiscalCode", "GinoAddress"))
+      )
+    }
   }
 
   @Test
   internal fun should_modify_customer_personal_data() {
     val customerId = randomUUID()
     every { customerRepository.load(customerId) } returns Customer()
-      .hydrate(listOf<Event>(CustomerAcquired(customerId, "Gino", "Paoli", "GinoFiscalCode", "GinoAddress")))
+      .hydrate(listOf<Event>(
+        CustomerAcquired(customerId, "Gino", "Paoli", "GinoFiscalCode", "GinoAddress")
+      ))
 
     commandHandler.handle(ModifyCustomerPersonalData(customerId, "new address"))
 
     verify {
-      customerRepository.put(match { customer ->
-        customer.changes().last() == CustomerPersonalDataModified(customerId, "new address")
-      })
+      customerRepository.put(lastChangeMatchWith(CustomerPersonalDataModified(customerId, "new address")))
     }
   }
+
+  private fun MockKVerificationScope.lastChangeMatchWith(event: Event): Customer =
+    match { customer ->
+      customer.changes().last() == event
+    }
 }

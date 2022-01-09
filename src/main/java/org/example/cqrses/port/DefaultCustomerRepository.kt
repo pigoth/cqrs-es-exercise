@@ -2,6 +2,7 @@ package org.example.cqrses.port
 
 import com.google.common.eventbus.EventBus
 import org.example.cqrses.domain.Customer
+import java.util.*
 
 class DefaultCustomerRepository(
   private val eventStore: EventStore,
@@ -15,6 +16,10 @@ class DefaultCustomerRepository(
           eventBus.post(event)
         }
     }
+  }
+
+  override fun load(customerId: UUID): Customer {
+    TODO("Not yet implemented")
   }
 
 }

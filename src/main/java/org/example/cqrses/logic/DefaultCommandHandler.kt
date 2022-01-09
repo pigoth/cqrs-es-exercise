@@ -19,7 +19,11 @@ class DefaultCommandHandler(
 
       customerRepository.put(customer)
     } else if (command is ModifyCustomerPersonalData) {
-      //todo
+      val customer = customerRepository.load(command.customerId)
+
+      customer.modifyPersonalData(command.address)
+
+      customerRepository.put(customer)
     }
   }
 

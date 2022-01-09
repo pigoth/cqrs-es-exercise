@@ -11,3 +11,8 @@ data class CustomerAcquired(
   val fiscalCode: String,
   val address: String
 ) : Event
+
+data class CustomerPersonalDataModified(
+  val customerId: UUID,
+  val address: String
+) : Event

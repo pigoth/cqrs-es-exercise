@@ -19,7 +19,7 @@ class DefaultCustomerRepository(
   }
 
   override fun load(customerId: UUID): Customer {
-    TODO("Not yet implemented")
+    return Customer().hydrate(eventStore.allFor(customerId))
   }
 
 }

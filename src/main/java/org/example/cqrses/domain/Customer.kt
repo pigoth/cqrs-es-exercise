@@ -1,5 +1,6 @@
 package org.example.cqrses.domain
 
+import java.time.LocalDateTime
 import java.util.*
 
 class Customer {
@@ -10,12 +11,12 @@ class Customer {
 
   fun changes() = changes.toList()
 
-  fun acquire(id: UUID, name: String, surname: String, fiscalCode: String, address: String) {
-    changes.add(CustomerAcquired(id, name, surname, fiscalCode, address))
+  fun acquire(id: UUID, name: String, surname: String, fiscalCode: String, address: String, at: LocalDateTime) {
+    changes.add(CustomerAcquired(id, name, surname, fiscalCode, address, at))
   }
 
-  fun modifyPersonalData(address: String) {
-    changes.add(CustomerPersonalDataModified(id, address))
+  fun modifyPersonalData(address: String, at: LocalDateTime) {
+    changes.add(CustomerPersonalDataModified(id, address, at))
   }
 
   fun hydrate(events: List<Event>): Customer {

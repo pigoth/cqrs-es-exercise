@@ -1,4 +1,4 @@
-package org.example.cqrses
+package org.example.cqrses.port.repository
 
 import org.example.cqrses.port.CustomerView
 

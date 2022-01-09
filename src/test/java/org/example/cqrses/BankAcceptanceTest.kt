@@ -2,7 +2,6 @@ package org.example.cqrses
 
 import org.assertj.core.api.Assertions.assertThat
 import org.example.cqrses.port.CustomerView
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 
 internal class BankAcceptanceTest {
@@ -15,6 +14,18 @@ internal class BankAcceptanceTest {
 
     assertThat(bank.customers()).containsExactly(
       CustomerView(customerId, "Gino", "Rossi", "full address")
+    )
+  }
+
+  @Test
+  internal fun should_update_customer_address() {
+    val bank = Bank()
+
+    val customerId = bank.acquireCustomer("Gino", "Rossi", "fiscalCode", "old address")
+    bank.modifyCustomerPersonalData(customerId, address = "new address")
+
+    assertThat(bank.customers()).containsExactly(
+      CustomerView(customerId, "Gino", "Rossi", "new address")
     )
   }
 }

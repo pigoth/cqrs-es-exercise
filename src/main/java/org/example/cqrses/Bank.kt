@@ -2,11 +2,10 @@ package org.example.cqrses
 
 import com.google.common.eventbus.EventBus
 import org.example.cqrses.domain.AcquireCustomer
-import org.example.cqrses.logic.CommandHandler
-import org.example.cqrses.logic.DefaultCommandHandler
-import org.example.cqrses.logic.DefaultIdGenerator
-import org.example.cqrses.logic.IdGenerator
+import org.example.cqrses.domain.ModifyCustomerPersonalData
+import org.example.cqrses.logic.*
 import org.example.cqrses.port.*
+import org.example.cqrses.port.repository.InMemoryCustomerViews
 import java.util.*
 
 class Bank {
@@ -23,6 +22,10 @@ class Bank {
     val id = idGenerator.invoke()
     commandHandler.handle(AcquireCustomer(id, name, surname, fiscalCode, address))
     return id
+  }
+
+  fun modifyCustomerPersonalData(customerId: UUID, address: String) {
+    commandHandler.handle(ModifyCustomerPersonalData(customerId, address))
   }
 
   fun customers(): List<CustomerView> {

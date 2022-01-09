@@ -1,19 +1,26 @@
 package org.example.cqrses.logic
 
 import org.example.cqrses.domain.AcquireCustomer
+import org.example.cqrses.domain.Command
 import org.example.cqrses.domain.Customer
+import org.example.cqrses.domain.ModifyCustomerPersonalData
 import org.example.cqrses.port.CustomerRepository
 
 class DefaultCommandHandler(
   private val customerRepository: CustomerRepository
 ) : CommandHandler {
 
-  override fun handle(command: AcquireCustomer) {
-    val customer = Customer()
+  override fun handle(command: Command) {
 
-    customer.acquire(command.id, command.name, command.surname, command.fiscalCode, command.address)
+    if (command is AcquireCustomer) {
+      val customer = Customer()
 
-    customerRepository.put(customer)
+      customer.acquire(command.id, command.name, command.surname, command.fiscalCode, command.address)
+
+      customerRepository.put(customer)
+    } else if (command is ModifyCustomerPersonalData) {
+      //todo
+    }
   }
 
 }

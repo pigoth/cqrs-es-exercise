@@ -5,7 +5,9 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
 import org.example.cqrses.domain.CustomerAcquired
+import org.example.cqrses.logic.CustomerViewHandler
 import org.example.cqrses.port.CustomerView
+import org.example.cqrses.port.repository.CustomerViews
 import org.junit.jupiter.api.Test
 import java.util.*
 

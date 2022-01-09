@@ -8,7 +8,7 @@ internal class BankAcceptanceTest {
 
   @Test
   internal fun should_find_acquired_customers() {
-    val bank = Bank()
+    val bank = BankEntryPoint()
 
     val customerId = bank.acquireCustomer("Gino", "Rossi", "fiscalCode", "full address")
 
@@ -19,7 +19,7 @@ internal class BankAcceptanceTest {
 
   @Test
   internal fun should_update_customer_address() {
-    val bank = Bank()
+    val bank = BankEntryPoint()
 
     val customerId = bank.acquireCustomer("Gino", "Rossi", "fiscalCode", "old address")
     bank.modifyCustomerPersonalData(customerId, address = "new address")

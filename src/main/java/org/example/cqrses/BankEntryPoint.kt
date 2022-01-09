@@ -8,7 +8,7 @@ import org.example.cqrses.port.*
 import org.example.cqrses.port.repository.InMemoryCustomerViews
 import java.util.*
 
-class Bank {
+class BankEntryPoint {
   private val customerViews = InMemoryCustomerViews()
   private val eventBus: EventBus = EventBus().apply {
     this.register(CustomerViewHandler(customerViews))

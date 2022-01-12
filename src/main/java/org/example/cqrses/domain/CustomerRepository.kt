@@ -1,6 +1,5 @@
-package org.example.cqrses.port
+package org.example.cqrses.domain
 
-import org.example.cqrses.domain.Customer
 import java.util.*
 
 interface CustomerRepository {

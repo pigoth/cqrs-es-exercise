@@ -7,7 +7,7 @@ import io.mockk.verify
 import org.example.cqrses.domain.*
 import org.example.cqrses.logic.CommandHandler
 import org.example.cqrses.logic.DefaultCommandHandler
-import org.example.cqrses.port.CustomerRepository
+import org.example.cqrses.domain.CustomerRepository
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import java.time.LocalDateTime

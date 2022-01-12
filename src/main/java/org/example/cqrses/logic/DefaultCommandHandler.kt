@@ -3,7 +3,7 @@ package org.example.cqrses.logic
 import org.example.cqrses.ProvideLocalDateTime
 import org.example.cqrses.UTCLocalDateTime
 import org.example.cqrses.domain.*
-import org.example.cqrses.port.CustomerRepository
+import org.example.cqrses.domain.CustomerRepository
 
 class DefaultCommandHandler(
   private val customerRepository: CustomerRepository,

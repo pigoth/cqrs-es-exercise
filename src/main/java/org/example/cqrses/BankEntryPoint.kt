@@ -2,6 +2,7 @@ package org.example.cqrses
 
 import com.google.common.eventbus.EventBus
 import org.example.cqrses.domain.AcquireCustomer
+import org.example.cqrses.domain.CustomerRepository
 import org.example.cqrses.domain.ModifyCustomerPersonalData
 import org.example.cqrses.logic.*
 import org.example.cqrses.port.*
